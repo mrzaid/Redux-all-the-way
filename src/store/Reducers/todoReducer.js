@@ -4,8 +4,9 @@ import TodoAction from "../Actions/todoAction";
 function TodoReducer (state={
 isLoading: false,
 isError:false,
+todos:[],
 errorMessage:"",
-successMessage="",
+successMessage:"",
 
 },action){
 switch (action.type) {
@@ -20,22 +21,23 @@ switch (action.type) {
             ...state,
             isLoading:false,
             isError:false,
+            todos:action.data,
         } 
         break;
     case TodoAction.TODO_GET_FAILED:
         return{
             ...state,
             isLoading:false,
-            isError:true
+            isError:true,
+            // todos:action.data,
             //error message
         } 
         break;
 
     default:
-        return{
-            state
-        }
+        return state 
         break;
 } 
 }
-export default TodoReducer
+
+export default TodoReducer;
